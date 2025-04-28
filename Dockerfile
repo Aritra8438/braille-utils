@@ -15,4 +15,4 @@ RUN pip install waitress
 
 EXPOSE 10000
 
-CMD ["python", "api/index.py"]
+CMD ["python", "api/serve.py"]
