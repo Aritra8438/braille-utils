@@ -1,0 +1,290 @@
+<!-- @format -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../static/images/braille-utils-icon.png"
+    />
+    <title>Braille Utils</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #f0f0f0, #ffffff, #e0e0e0);
+        color: #000000;
+        min-height: 100vh;
+      }
+      .navbar {
+        background-color: #1e3a8a;
+        color: white;
+        padding: 0.5rem 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+      .navbar-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .navbar-brand {
+        font-size: 1.5rem;
+        color: white;
+        text-decoration: none;
+      }
+      .navbar-menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+      }
+      .navbar-menu li {
+        margin-left: 2rem;
+      }
+      .navbar-menu a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      .navbar-menu a:hover {
+        color: #4cc9f0;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+      header {
+        text-align: center;
+        padding: 2rem 0;
+      }
+      h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        color: #1e3a8a;
+      }
+      footer {
+        text-align: center;
+        margin-top: 4rem;
+        padding: 2rem 0;
+        opacity: 0.7;
+        font-size: 0.9rem;
+      }
+      textarea {
+        width: 50%;
+        height: 300px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+      .image-container {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .image-box {
+        width: 600px;
+        height: 400px;
+        border: 2px dashed #1e3a8a;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background: white;
+      }
+
+      .loading-spinner {
+        display: none;
+        width: 50px;
+        height: 50px;
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #1e3a8a;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        position: absolute;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      #brailleOutput {
+        font-size: 1.5rem;
+      }
+      #textOutput {
+        font-size: 1.2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="/" class="navbar-brand">
+          <img
+            src="../static/images/braille-utils-logo.png"
+            alt="Braille Utils Logo"
+            height="35"
+          />
+        </a>
+        <ul class="navbar-menu">
+          <li><a href="/braille-image-to-text">Braille-Image-to-Text</a></li>
+          <li><a href="/text-image-to-braille">Text-Image-To-Braille</a></li>
+          <li><a href="/braille-to-text">Braille-To-Text</a></li>
+          <li><a href="/text-to-braille">Text-To-Braille</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <section id="imageProcessing">
+        <h2>Braille Image Processing</h2>
+        <div class="image-container">
+          <div class="image-box">
+            <input
+              type="file"
+              id="imageInput"
+              accept="image/*"
+              style="display: none"
+            />
+            <img
+              id="inputPreview"
+              style="max-width: 100%; max-height: 100%; display: none"
+            />
+            <div id="uploadText">Click or drag image here</div>
+          </div>
+          <div class="image-box">
+            <div class="loading-spinner" id="loadingSpinner"></div>
+            <img
+              id="processedPreview"
+              style="max-width: 100%; max-height: 100%; display: none"
+            />
+            <div id="processedText">Processed image will appear here</div>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: center; margin: 20px 0">
+          <button
+            style="
+              font-size: 1.2rem;
+              padding: 10px 20px;
+              background-color: #1e3a8a;
+              color: white;
+              border: none;
+              border-radius: 5px;
+              cursor: pointer;
+              transition: background-color 0.3s ease;
+            "
+            onmouseover="this.style.backgroundColor='#4338ca'"
+            onmouseout="this.style.backgroundColor='#1e3a8a'"
+            onclick="processImage()"
+            id="processButton"
+          >
+            Process
+          </button>
+        </div>
+      </section>
+      <section id="translation">
+        <div style="display: flex; gap: 20px">
+          <textarea
+            id="brailleOutput"
+            placeholder="Detected Braille"
+            readonly
+          ></textarea>
+          <textarea
+            id="textOutput"
+            placeholder="Translated Text"
+            readonly
+          ></textarea>
+        </div>
+      </section>
+      <br />
+      <div
+        style="display: flex; justify-content: center; margin-top: 10px"
+      ></div>
+
+      <footer>
+        <p>© 2025 Braille Utils | Making braille accessible for everyone</p>
+      </footer>
+    </div>
+    <script>
+      const imageBox = document.querySelector(".image-box");
+      const imageInput = document.getElementById("imageInput");
+      const inputPreview = document.getElementById("inputPreview");
+      const uploadText = document.getElementById("uploadText");
+      const loadingSpinner = document.getElementById("loadingSpinner");
+
+      imageBox.addEventListener("click", () => imageInput.click());
+
+      imageInput.addEventListener("change", function (e) {
+        const file = e.target.files[0];
+        inputPreview.addEventListener("load", () => {
+          const processedPreview = document.getElementById("processedPreview");
+          const processedText = document.getElementById("processedText");
+          processedPreview.style.display = "none";
+          processedText.style.display = "block";
+          processedText.innerText = "Processed image will appear here";
+        });
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            inputPreview.src = e.target.result;
+            inputPreview.style.display = "block";
+            uploadText.style.display = "none";
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+      function processImage() {
+        if (!imageInput.files[0]) {
+          alert("Please select an image first");
+          return;
+        }
+        document.getElementById("processedText").innerText = "";
+
+        loadingSpinner.style.display = "block";
+        const formData = new FormData();
+        formData.append("image", imageInput.files[0]);
+
+        fetch("/braille-image-to-text-api", {
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            loadingSpinner.style.display = "none";
+            document.getElementById(
+              "processedPreview"
+            ).src = `data:image/png;base64,${data.image}`;
+            document.getElementById("processedPreview").style.display = "block";
+            document.getElementById("processedText").style.display = "none";
+            document.getElementById("textOutput").value = data.text_output;
+            document.getElementById("brailleOutput").value =
+              data.braille_output;
+          })
+          .catch((error) => {
+            loadingSpinner.style.display = "none";
+            document.getElementById("processedText").innerText =
+              "Processed image will appear here";
+            alert("Error processing image: " + error);
+          });
+      }
+    </script>
+  </body>
+</html>

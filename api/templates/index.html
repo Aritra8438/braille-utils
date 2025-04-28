@@ -1,0 +1,191 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../static/images/braille-utils-icon.png"
+    />
+    <title>Braille Utils</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #f0f0f0, #ffffff, #e0e0e0);
+        color: #000000;
+        min-height: 100vh;
+      }
+      .navbar {
+        background-color: #1e3a8a;
+        color: white;
+        padding: 0.5rem 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+      .navbar-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .navbar-brand {
+        font-size: 1.5rem;
+        color: white;
+        text-decoration: none;
+      }
+      .navbar-menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+      }
+      .navbar-menu li {
+        margin-left: 2rem;
+      }
+      .navbar-menu a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      .navbar-menu a:hover {
+        color: #4cc9f0;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+      header {
+        text-align: center;
+        padding: 0rem 0;
+      }
+      h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        color: #1e3a8a;
+      }
+      .tagline {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        opacity: 0.9;
+      }
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+      .card {
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 10px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+      }
+      .card h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #1e3a8a;
+      }
+      .card p {
+        opacity: 0.8;
+        line-height: 1.6;
+      }
+      .cta {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.8rem 1.5rem;
+        background: #1e3a8a;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background 0.3s ease;
+      }
+      .cta:hover {
+        background: #3a56e4;
+      }
+      footer {
+        text-align: center;
+        margin-top: 4rem;
+        padding: 2rem 0;
+        opacity: 0.7;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="/" class="navbar-brand">
+          <img
+            src="../static/images/braille-utils-logo.png"
+            alt="Braille Utils Logo"
+            height="35"
+          />
+        </a>
+        <ul class="navbar-menu">
+          <li><a href="/braille-image-to-text">Braille-Image-to-Text</a></li>
+          <li><a href="/text-image-to-braille">Text-Image-To-Braille</a></li>
+          <li><a href="/braille-to-text">Braille-To-Text</a></li>
+          <li><a href="/text-to-braille">Text-To-Braille</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <header>
+        <h1>Braille Utils</h1>
+        <p class="tagline">
+          Simple, powerful tools for braille translation and processing
+        </p>
+        <a href="/about" class="cta">Get Started</a>
+      </header>
+
+      <div class="cards">
+        <div class="card">
+          <h2>Translation</h2>
+          <p>
+            Convert braille to text and text to braille with advanced and robust
+            translation tool. Use the handy braille keyboard to learn braille.
+          </p>
+          <a href="/braille-to-text" class="cta">Translate Now</a>
+        </div>
+
+        <div class="card">
+          <h2>Document Processing</h2>
+          <p>
+            Process both braille and text images effortlessly. Convert braille
+            images to text or text images to braille with accuracy.
+          </p>
+          <a href="/braille-image-to-text" class="cta">Process Images</a>
+        </div>
+
+        <div class="card">
+          <h2>Resources</h2>
+          <p>
+            Access a variety of resources including documentation, code
+            examples, citations, workflow models, and contributor information.
+          </p>
+          <a href="/about" class="cta">Documentation</a>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2025 Braille Utils | Making braille accessible for everyone</p>
+    </footer>
+  </body>
+</html>
