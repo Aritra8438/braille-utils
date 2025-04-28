@@ -1,2 +1,362 @@
-<!-- @format -->
-Hello! Welcome to Braille Utils. Will soon add this page.
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../static/images/braille-utils-icon.png"
+    />
+    <title>About Braille Utils</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #f0f0f0, #ffffff, #e0e0e0);
+        color: #000000;
+        min-height: 100vh;
+      }
+      .navbar {
+        background-color: #1e3a8a;
+        color: white;
+        padding: 0.5rem 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+      .navbar-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .navbar-brand {
+        font-size: 1.5rem;
+        color: white;
+        text-decoration: none;
+      }
+      .navbar-menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+      }
+      .navbar-menu li {
+        margin-left: 2rem;
+      }
+      .navbar-menu a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      .navbar-menu a:hover {
+        color: #4cc9f0;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+      header {
+        text-align: center;
+        padding: 0rem 0;
+      }
+      h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        color: #1e3a8a;
+      }
+      .tagline {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        opacity: 0.9;
+      }
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+      .card {
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 10px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+      }
+      .card h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #1e3a8a;
+      }
+      .card p {
+        opacity: 0.8;
+        line-height: 1.6;
+      }
+      .cta {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.8rem 1.5rem;
+        background: #1e3a8a;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background 0.3s ease;
+      }
+      .cta:hover {
+        background: #3a56e4;
+      }
+      footer {
+        text-align: center;
+        margin-top: 4rem;
+        padding: 2rem 0;
+        opacity: 0.7;
+        font-size: 0.9rem;
+      }
+      .contributors {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 20px;
+      }
+
+      .contributor-box {
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin: 10px;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: #f9f9f9;
+        width: 200px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .contributor-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      }
+
+      .contributor-box h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        color: #1e3a8a;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .social-links {
+        margin-top: 10px;
+      }
+
+      .social-links a {
+        display: inline-block;
+        margin: 0 10px;
+        color: #555;
+        font-size: 20px;
+      }
+
+      .social-links a:hover {
+        color: #1e3a8a;
+      }
+
+      .link-boxes {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .link-box {
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 20px 30px;
+        margin: 10px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+        width: 300px;
+      }
+
+      .link-box:hover {
+        transform: translateY(-5px);
+      }
+
+      .link-box a {
+        font-size: 1.2rem;
+        color: #1e3a8a;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .about-text {
+        font-size: 1.3rem;
+        font-family: "Georgia", serif;
+        line-height: 1.8;
+        margin-bottom: 20px;
+      }
+
+      .contributors-heading {
+        font-size: 2rem;
+        color: #1e3a8a;
+        margin-bottom: 10px;
+        text-align: center;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        font-family: "Georgia", serif;
+      }
+
+      .utilities-heading {
+        font-size: 2rem;
+        color: #1e3a8a;
+        margin-bottom: 10px;
+        text-align: center;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        font-family: "Georgia", serif;
+      }
+
+      .utilities {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        margin-top: 20px;
+      }
+
+      .utility-box {
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 20px 30px;
+        margin: 10px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+        width: 150px;
+      }
+
+      .utility-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      }
+
+      .utility-box a {
+        font-size: 1.2rem;
+        color: #1e3a8a;
+        text-decoration: none;
+        font-weight: bold;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="/" class="navbar-brand">
+          <img
+            src="../static/images/braille-utils-logo.png"
+            alt="Braille Utils Logo"
+            height="35"
+          />
+        </a>
+        <ul class="navbar-menu">
+          <li><a href="/braille-image-to-text">Braille-Image-to-Text</a></li>
+          <li><a href="/text-image-to-braille">Text-Image-To-Braille</a></li>
+          <li><a href="/braille-to-text">Braille-To-Text</a></li>
+          <li><a href="/text-to-braille">Text-To-Braille</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <header>
+        <h1>About Braille Utils</h1>
+      </header>
+
+      <div class="content">
+        <p class="about-text" style="text-align: center;">
+          Braille Utils is a collection of tools designed to make braille
+          translation and processing more accessible.
+        </p>
+        <div class="link-boxes">
+          <div class="link-box">
+            <a href="https://braille-utils.onrender.com/">Visit Our Website</a>
+          </div>
+          <div class="link-box">
+            <a href="https://github.com/Aritra8438/braille-utils">GitHub Repository</a>
+          </div>
+          <div class="link-box">
+            <a href="https://github.com/Aritra8438/braille-utils/blob/main/README.md">Documentation</a>
+          </div>
+        </div>
+        <p class="contributors-heading">Our Contributors</p>
+        <div class="contributors">
+          <div class="contributor-box">
+            <h3>Nandini</h3>
+            <div class="social-links">
+              <a href="https://www.linkedin.com/in/nandini-jaiswal-cmi/" target="_blank"><i class="fab fa-linkedin"></i></a>
+              <a href="https://github.com/Nandini-Jaiswal" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="contributor-box">
+            <h3>Aritra</h3>
+            <div class="social-links">
+              <a href="https://www.linkedin.com/in/aritra-majumder-juee23/" target="_blank"><i class="fab fa-linkedin"></i></a>
+              <a href="https://github.com/Aritra8438" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="contributor-box">
+            <h3>Sreeja</h3>
+            <div class="social-links">
+              <a href="https://www.linkedin.com/in/sreeja-choudhury-91643b230" target="_blank"><i class="fab fa-linkedin"></i></a>
+              <a href="https://github.com/SreejaChoudhury/" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="contributor-box">
+            <h3>Satyaki</h3>
+            <div class="social-links">
+              <a href="https://www.linkedin.com/in/satyaki-mullick-profile" target="_blank"><i class="fab fa-linkedin"></i></a>
+              <a href="https://github.com/satyaki-02" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+        </div>
+        <p class="utilities-heading">Utilities</p>
+        <div class="utilities">
+          <div class="utility-box">
+            <a href="/">Home</a>
+          </div>
+           <div class="utility-box">
+            <a href="/braille-to-text">Braille to Text</a>
+          </div>
+          <div class="utility-box">
+            <a href="/text-to-braille">Text to Braille</a>
+          </div>
+          <div class="utility-box">
+            <a href="/braille-image-to-text">Braille Image to Text</a>
+          </div>
+           <div class="utility-box">
+            <a href="/text-image-to-braille">Text Image to Braille</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2025 Braille Utils | Making braille accessible for everyone</p>
+    </footer>
+  </body>
+</html>
