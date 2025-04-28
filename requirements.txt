@@ -1,0 +1,7 @@
+Flask==3.1.0
+torch==2.6.0
+torchvision==0.21.0
+torchaudio==2.6.0
+easyocr==1.7.2
+ultralytics==8.3.112
+pytest==8.3.5
