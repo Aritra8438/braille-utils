@@ -1,0 +1,7 @@
+[report]
+
+ignore_errors = True
+
+omit =
+    config.py
+    config-3.py
