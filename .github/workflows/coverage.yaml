@@ -34,7 +34,7 @@ jobs:
           git config --global user.email "actions@github.com"
           git add coverage.txt
           git commit -m "Update coverage report" || echo "No changes to commit"
-          git push
+          git push || echo "Not on a branch, skipping push"
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
         env:
