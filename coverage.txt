@@ -4,11 +4,11 @@ api/index.py                           101     49    51%
 api/tests/__init__.py                    0      0   100%
 api/tests/conftest.py                    7      0   100%
 api/tests/test_index.py                 20      0   100%
-api/tests/test_utils.py                 27      0   100%
+api/tests/test_utils.py                 40      0   100%
 api/utils/__init__.py                    0      0   100%
-api/utils/braille_image_to_text.py      95     85    11%
+api/utils/braille_image_to_text.py      96      3    97%
 api/utils/braille_to_text.py            29      1    97%
-api/utils/image_to_braille.py           28     22    21%
-api/utils/text_to_braille.py            38      6    84%
+api/utils/image_to_braille.py           29      1    97%
+api/utils/text_to_braille.py            38      4    89%
 --------------------------------------------------------
-TOTAL                                  345    163    53%
+TOTAL                                  360     58    84%
