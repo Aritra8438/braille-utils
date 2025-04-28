@@ -3,6 +3,7 @@ from utils.text_to_braille import text_to_braille
 from utils.image_to_braille import image_to_braille
 from utils.braille_image_to_text import braille_image_to_text
 import pytest
+from thefuzz import fuzz
 
 
 @pytest.mark.parametrize(
@@ -142,3 +143,30 @@ def test_braille_to_text_to_braille(braille_input):
     text_output = braille_to_text(braille_input)
     braille_output = text_to_braille(text_output)
     assert braille_output == braille_input
+
+
+@pytest.mark.parametrize(
+    "image_path, expected_text",
+    [
+        ("api/static/images/braille-1.jpg", "ABCDEFGHIJ\nKLMNOPQRST\nUVWXYZ"),
+        ("api/static/images/braille-2.png", "ABCDEFGHI\nJKLMNOPQR\nSTUVXYZ W"),
+        ("api/static/images/braille-3.jpg", "ABCDEFGH\nIJKLMNOP\nQRSTUVWX\nYZ"),
+    ],
+)
+def test_braille_image_to_text(image_path, expected_text):
+    _, predicted_text = braille_image_to_text(image_path, test=True)
+    ratio = fuzz.ratio(predicted_text.lower(), expected_text.lower())
+    assert ratio > 80
+
+@pytest.mark.parametrize(
+    "image_path, expected_text, braille_text",
+    [
+        ("api/static/images/text-1.png", "Translation Hello! How are you doing?", "⠠⠞⠗⠁⠝⠎⠇⠁⠞⠊⠕⠝ ⠠⠓⠑⠇⠇⠕⠖ ⠠⠓⠕⠺ ⠁⠗⠑ ⠽⠕⠥ ⠙⠕⠊⠝⠛⠦⠇"),
+    ],
+)
+def test_text_image_to_braille(image_path, expected_text, braille_text):
+    predicted_text, braille_text_output = image_to_braille(image_path, test=True)
+    ratio = fuzz.ratio(predicted_text.lower(), expected_text.lower())
+    assert ratio > 80
+    ratio_braille = fuzz.ratio(braille_text_output, braille_text)
+    assert ratio_braille > 80

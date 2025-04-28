@@ -8,7 +8,7 @@ logging.basicConfig(
 )
 
 
-def image_to_braille(image_path):
+def image_to_braille(image_path, test=False):
     logging.info(f"Starting image_to_braille function for image: {image_path}")
 
     reader = easyocr.Reader(["en"])
@@ -39,7 +39,8 @@ def image_to_braille(image_path):
         )
         logging.info(f"Added text annotation: {text}")
 
-    cv2.imwrite(image_path, image)
+    if test is False:
+        cv2.imwrite(image_path, image)
     logging.info(f"Annotated image saved to: {image_path}")
 
     text = " ".join([res[1] for res in result])

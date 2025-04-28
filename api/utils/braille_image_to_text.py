@@ -102,7 +102,7 @@ def detect_line_breaks_and_spaces(combined_result):
     return "\n".join(lines)
 
 
-def braille_image_to_text(image_path):
+def braille_image_to_text(image_path, test=False):
     logging.info("Called braille_image_to_text with image path: %s", image_path)
 
     logging.info("Running YOLO model on the image...")
@@ -151,7 +151,8 @@ def braille_image_to_text(image_path):
             text_thickness,
         )
 
-    cv2.imwrite(image_path, image)
+    if test is False:
+        cv2.imwrite(image_path, image)
     logging.info("Annotated image saved to: %s", image_path)
 
     logging.info("Detecting line breaks and spaces...")
