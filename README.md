@@ -139,7 +139,7 @@ To bring up the server on port `5000`:
 python .\api\index.py
 ```
 
-To run in production mode, you can use the `dockerfile`.
+To run in production mode, you can use the `Dockerfile`.
 ```console
 docker build -t braille-utils .
 docker run -d --name braille-utils-server -p 10000:10000 braille-utils 
