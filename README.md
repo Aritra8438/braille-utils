@@ -152,6 +152,9 @@ You can pull the image using:
 docker pull aritra8438/braille-utils
 ```
 
+## Coverage
+The interactive coverage report can be found here on [codecov](https://app.codecov.io/github/Aritra8438/braille-utils).
+
 ## Process Diagram
 
 ```mermaid
