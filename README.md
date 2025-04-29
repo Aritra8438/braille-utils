@@ -177,3 +177,32 @@ The interactive coverage report can be found here on [codecov](https://app.codec
 - [ ] Implement more robust error handling.
 - [ ] Find a good dataset to further train the `YOLO` model.
 - [ ] Consider adding support for different braille formats.
+
+# Citations
+
+This project makes use of the following work:
+
+> @misc{ahn2024dotneuralnet,  
+>   author={Ahn, Young Jin},  
+>   title={DotNeuralNet: Light-weight Neural Network for Optical Braille Recognition in the Wild},  
+>   year={2023},  
+> }
+
+> Redmon, J., Divvala, S., Girshick, R., & Farhadi, A. (2016). You Only Look Once: Unified, Real-Time Object Detection. In 2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR) (pp. 779–788). https://doi.org/10.1109/CVPR.2016.91
+
+> This project uses [EasyOCR](https://github.com/JaidedAI/EasyOCR) for optical character recognition and [YOLO](https://github.com/ultralytics/yolov5) for object detection in image-based braille processing.
+
+> @misc{braille-detection_dataset,  
+>   title = {Braille Detection Dataset},  
+>   type = {Open Source Dataset},  
+>   author = {Braille},  
+>   howpublished = {\url{https://universe.roboflow.com/braille-lq5eh/braille-detection}},  
+>   url = {https://universe.roboflow.com/braille-lq5eh/braille-detection},  
+>   journal = {Roboflow Universe},  
+>   publisher = {Roboflow},  
+>   year = {2023},  
+>   month = {apr},  
+>   note = {visited on 2025-04-29},  
+> }
+
+If you use this project in your research, please consider citing the above works.
