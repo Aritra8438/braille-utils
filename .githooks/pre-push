@@ -1,0 +1,56 @@
+#!/bin/sh
+
+# Pre-push hook to run pytest in a virtual environment
+# Please run `git config core.hooksPath .githooks` to set the hooks path
+
+# Exit on error
+set -e
+
+echo "Running pre-push hook: pytest in virtual environment"
+
+# Store the current directory to return to it later
+REPO_ROOT=$(git rev-parse --show-toplevel)
+cd "$REPO_ROOT"
+
+# Check if virtual environment exists
+if [ ! -d "venv" ]; then
+    echo "Error: Virtual environment 'venv' not found!"
+    echo "Please create a virtual environment first:"
+    echo "  python -m venv venv"
+    echo "  source venv/bin/activate  # On Unix/MacOS"
+    echo "  venv\\Scripts\\activate  # On Windows"
+    echo "  pip install -r requirements.txt"
+    exit 1
+fi
+
+# Determine the activation script based on OS
+if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
+    # Windows
+    ACTIVATE_PATH="venv/Scripts/activate"
+    PYTHON_PATH="venv/Scripts/python"
+else
+    # Unix/MacOS
+    ACTIVATE_PATH="venv/bin/activate"
+    PYTHON_PATH="venv/bin/python"
+fi
+
+# Check if virtual environment activation script exists
+if [ ! -f "$ACTIVATE_PATH" ]; then
+    echo "Error: Virtual environment activation script not found at $ACTIVATE_PATH!"
+    exit 1
+fi
+
+echo "Activating virtual environment and running tests..."
+
+# Run pytest within the virtual environment
+# This approach avoids issues with sourcing the activate script in a subshell
+"$PYTHON_PATH" -m pytest -s
+
+# Check pytest exit code
+if [ $? -ne 0 ]; then
+    echo "Tests failed! Commit aborted."
+    exit 1
+fi
+
+echo "All the tests passed successfully!"
+exit 0

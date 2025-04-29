@@ -92,7 +92,7 @@ $ git push origin <new branch>
 
 Don't forget to run tests before creating the pull request.
 
-For testing, you need additional two python packages, install them:
+For testing, you need two additional python packages, install them:
 ```console
 pip install thefuzz
 pip install coverage
