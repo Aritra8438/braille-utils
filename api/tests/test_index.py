@@ -44,26 +44,16 @@ def test_render_about(client):
         ("api/static/images/text-1.png", "Translation Hello! How are you doing?", "⠠⠞⠗⠁⠝⠎⠇⠁⠞⠊⠕⠝ ⠠⠓⠑⠇⠇⠕⠖ ⠠⠓⠕⠺ ⠁⠗⠑ ⠽⠕⠥ ⠙⠕⠊⠝⠛⠦⠇"),
     ],
 )
-def test_text_image_to_braille_api(image_path, expected_text, braille_text):
-    python_location = "python"
-    if os.name == "nt":
-        python_location = "./venv/Scripts/python.exe"
-
-    process = subprocess.Popen([python_location, "./api/index.py"], shell=False)
-    time.sleep(5)
-    try:
-        with open(image_path, "rb") as img_file:
-            img_bytes = img_file.read()
-            files = {
-                "image": (os.path.basename(image_path), io.BytesIO(img_bytes), "application/octet-stream")
-            }
-            response = requests.post("http://127.0.0.1:5000/text-image-to-braille-api", files=files)
-        assert response.status_code == 200
-        assert fuzz.ratio(response.json()["text_output"].lower(), expected_text.lower()) > 80
-        assert fuzz.ratio(response.json()["braille_output"], braille_text) > 80
-    finally:
-        process.terminate()
-        process.wait()
+def test_text_image_to_braille_api(client, image_path, expected_text, braille_text):
+    with open(image_path, "rb") as img_file:
+        img_bytes = img_file.read()
+        data = {
+            "image": (io.BytesIO(img_bytes), os.path.basename(image_path))
+        }
+        response = client.post("/text-image-to-braille-api", data=data, content_type="multipart/form-data")
+    assert response.status_code == 200
+    assert fuzz.ratio(response.json["text_output"].lower(), expected_text.lower()) > 80
+    assert fuzz.ratio(response.json["braille_output"], braille_text) > 80
 
 
 @pytest.mark.parametrize(
@@ -75,24 +65,14 @@ def test_text_image_to_braille_api(image_path, expected_text, braille_text):
     ],
 )
 def test_braille_image_to_text_api(client, image_path, expected_text):
-    python_location = "python"
-    if os.name == "nt":
-        python_location = "./venv/Scripts/python.exe"
-
-    process = subprocess.Popen([python_location, "./api/index.py"], shell=False)
-    time.sleep(5)
-    try:
-        with open(image_path, "rb") as img_file:
-            img_bytes = img_file.read()
-            files = {
-                "image": (os.path.basename(image_path), io.BytesIO(img_bytes), "application/octet-stream")
-            }
-            response = requests.post("http://127.0.0.1:5000/braille-image-to-text-api", files=files)
-        ratio = fuzz.ratio(response.json()["text_output"], expected_text)
-        assert ratio > 80
-    finally:
-        process.terminate()
-        process.wait()
+    with open(image_path, "rb") as img_file:
+        img_bytes = img_file.read()
+        data = {
+            "image": (io.BytesIO(img_bytes), os.path.basename(image_path))
+        }
+        response = client.post("/braille-image-to-text-api", data=data, content_type="multipart/form-data")
+    ratio = fuzz.ratio(response.json["text_output"], expected_text)
+    assert ratio > 80
 
 def test_render_braille_image_to_text(client):
     response = client.get("braille-image-to-text")
