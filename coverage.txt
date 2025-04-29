@@ -3,7 +3,7 @@ Name                                 Stmts   Miss  Cover
 api/index.py                           101     15    85%
 api/tests/__init__.py                    0      0   100%
 api/tests/conftest.py                    7      0   100%
-api/tests/test_index.py                 52      0   100%
+api/tests/test_index.py                 49      0   100%
 api/tests/test_utils.py                 40      0   100%
 api/utils/__init__.py                    0      0   100%
 api/utils/braille_image_to_text.py      96      2    98%
@@ -11,4 +11,4 @@ api/utils/braille_to_text.py            29      1    97%
 api/utils/image_to_braille.py           29      0   100%
 api/utils/text_to_braille.py            38      4    89%
 --------------------------------------------------------
-TOTAL                                  392     22    94%
+TOTAL                                  389     22    94%
