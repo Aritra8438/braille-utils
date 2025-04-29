@@ -33,7 +33,7 @@ braille-utils/
 ## Website:
 <a href="https://braille-utils.onrender.com/"><strong>Our website is live!</strong></a>
 
-Note that, it's hosted on render under a free plan. So, there's a severe limitation of 512 MB RAM, which is just not enough to run `easyOCR` and `YOLO` models. So, the image translation doesn't work on the website. 
+Note that it's hosted on Render under a free plan. So, there's a severe limitation of 512 MB RAM, which is just not enough to run `easyOCR` and `YOLO` models. So, the image translation doesn't work on the website. 
 ## Project Overview
 
 Welcome to `braille-utils`.
