@@ -2,9 +2,6 @@ import io
 from thefuzz import fuzz
 import pytest
 import os
-import subprocess
-import time
-import requests
 
 def test_render_home(client):
     response = client.get("/")
