@@ -30,7 +30,18 @@ braille-utils/
 └── uploads/
 ```
 
-## Website:
+## Process Diagram
+
+```mermaid
+graph TD
+    A[Input Image/Text] --> B{Braille Conversion};
+    B -- Image --> C[Image to Braille];
+    B -- Text --> D[Text to Braille];
+    C --> E[Output Braille Image];
+    D --> F[Output Braille Text];
+```
+
+## Website
 <a href="https://braille-utils.onrender.com/"><strong>Our website is live!</strong></a>
 
 Note that it's hosted on Render under a free plan. So, there's a severe limitation of 512 MB RAM, which is just not enough to run `easyOCR` and `YOLO` models. So, the image translation doesn't work on the website. 
@@ -107,7 +118,7 @@ You should make sure to pass all the tests before pushing to origin.
 
 Thank you for your contribution.
 
-## Local Development Setup
+# Local Development Setup
 
 Open the terminal at the destination folder:
 
@@ -152,19 +163,8 @@ You can pull the image using:
 docker pull aritra8438/braille-utils
 ```
 
-## Coverage
+# Coverage
 The interactive coverage report can be found here on [codecov](https://app.codecov.io/github/Aritra8438/braille-utils).
-
-## Process Diagram
-
-```mermaid
-graph TD
-    A[Input Image/Text] --> B{Braille Conversion};
-    B -- Image --> C[Image to Braille];
-    B -- Text --> D[Text to Braille];
-    C --> E[Output Braille Image];
-    D --> F[Output Braille Text];
-```
 
 # Current Work
 - [x] Support for `Braille-to-text` translation.
