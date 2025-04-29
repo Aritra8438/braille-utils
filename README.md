@@ -31,7 +31,7 @@ braille-utils/
 ```
 
 ## Website:
-<a href="https://eco-metrics-api.vercel.app/"><strong>Our website is live!</strong></a>
+<a href="https://braille-utils.onrender.com/"><strong>Our website is live!</strong></a>
 
 Note that, it's hosted on render under a free plan. So, there's a severe limitation of 512 MB RAM, which is just not enough to run `easyOCR` and `YOLO` models. So, the image translation doesn't work on the website. 
 ## Project Overview
