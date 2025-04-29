@@ -70,9 +70,8 @@ $ git remote add upstream https://github.com/Aritra8438/braille-utils.git
 $ git remote -v
 > origin    https://github.com/YOUR_USERNAME/YOUR_FORK.git (fetch)
 > origin    https://github.com/YOUR_USERNAME/YOUR_FORK.git (push)
-> upstream  https://github.com/Aritra8438/EcoMetrics-API.git (fetch)
-> upstream  https://github.com/Aritra8438/EcoMetrics-API.git (push)
-```
+> upstream  https://github.com/Aritra8438/braille-utils.git (fetch)
+> upstream  https://github.com/Aritra8438/braille-utils.git (push)
 - Before making any changes, sync your origin with upstream 
 
 ```console
