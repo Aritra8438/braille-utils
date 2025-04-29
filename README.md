@@ -142,7 +142,7 @@ python .\api\index.py
 To run in production mode, you can use the `dockerfile`.
 ```console
 docker build -t braille-utils .
-docker run -d --name braille-utils-server -p 5000:5000 braille-utils 
+docker run -d --name braille-utils-server -p 10000:10000 braille-utils 
 ```
 Note that, this will use the port `10000`.
 
