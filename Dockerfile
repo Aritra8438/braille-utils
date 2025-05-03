@@ -9,7 +9,10 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --default-timeout=100 -r requirements.txt
 
 COPY /api/ ./api
-COPY /uploads/ ./uploads
+RUN mkdir -p ./uploads && \
+    chmod -R 777 ./uploads
+RUN mkdir -p /.EasyOCR && \
+    chmod -R 777 /.EasyOCR
 
 RUN pip install waitress
 
